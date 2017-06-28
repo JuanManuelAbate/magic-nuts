@@ -22,12 +22,12 @@ public class ProductService {
         return (List<Product>) productRepository.findAll();
     }
 
-    public void createProduct(Product product) {
+    public Product createProduct(Product product) {
 
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 
-    public Product getProductById(Integer id) {
+    public Product getProductById(Long id) {
 
         return productRepository.findOne(id);
     }

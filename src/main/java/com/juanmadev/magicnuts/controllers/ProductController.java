@@ -1,5 +1,8 @@
 package com.juanmadev.magicnuts.controllers;
 
+import com.juanmadev.magicnuts.controllers.mappers.ProductMapper;
+import com.juanmadev.magicnuts.controllers.requests.ProductRequest;
+import com.juanmadev.magicnuts.controllers.responses.ProductResponse;
 import com.juanmadev.magicnuts.entities.Product;
 import com.juanmadev.magicnuts.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +19,25 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public List<Product> getAllProducts() {
+    @Autowired
+    private ProductMapper productMapper;
 
-        return productService.getAllProducts();
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    public List<ProductResponse> getAllProducts() {
+
+        return productMapper.productListToProductResponseList(productService.getAllProducts());
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.POST)
-    public void createProduct(@RequestBody Product product) {
+    public ProductResponse createProduct(@RequestBody ProductRequest product) {
 
-        productService.createProduct(product);
+        Product newProduct = productService.createProduct(productMapper.productRequestToProduct(product));
+        return productMapper.productToProductResponse(newProduct);
     }
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
-    public Product getProductById(@PathVariable("id") Integer id) {
+    public ProductResponse getProductById(@PathVariable("id") Long id) {
 
-        return productService.getProductById(id);
+        return productMapper.productToProductResponse(productService.getProductById(id));
     }
 }

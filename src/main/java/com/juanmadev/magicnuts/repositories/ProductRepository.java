@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by juanmanuelabate on 27/5/17.
  */
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends CrudRepository<Product, Long> {
 
 }
