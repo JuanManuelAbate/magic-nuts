@@ -1,28 +1,20 @@
-package com.juanmadev.magicnuts.entities;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.juanmadev.magicnuts.controllers.responses;
 
 /**
- * Created by juanmanuelabate on 25/5/17.
+ * Created by juanmanuelabate on 21/6/17.
  */
-@Entity
-public class Product {
+public class ProductResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     private Double price;
     private Double stock;
 
-    public Product() {
+    public ProductResponse() {
 
     }
 
-    public Product(Long id, String description, Double price, Double stock) {
+    public ProductResponse(Long id, String description, Double price, Double stock) {
         this.id = id;
         this.description = description;
         this.price = price;
