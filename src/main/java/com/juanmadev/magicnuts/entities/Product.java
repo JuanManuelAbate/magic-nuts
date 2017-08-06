@@ -1,9 +1,10 @@
 package com.juanmadev.magicnuts.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by juanmanuelabate on 25/5/17.
@@ -18,15 +19,15 @@ public class Product {
     private Double price;
     private Double stock;
 
+    @OneToMany(mappedBy = "product")
+    private Set<ProductPurchaseOrder> productPurchaseOrders = new HashSet<ProductPurchaseOrder>();
+
     public Product() {
 
     }
 
-    public Product(Long id, String description, Double price, Double stock) {
+    public Product(Long id) {
         this.id = id;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
     }
 
     public Long getId() {
@@ -59,5 +60,13 @@ public class Product {
 
     public void setStock(Double stock) {
         this.stock = stock;
+    }
+
+    public Set<ProductPurchaseOrder> getProductPurchaseOrders() {
+        return productPurchaseOrders;
+    }
+
+    public void setProductPurchaseOrders(Set<ProductPurchaseOrder> productPurchaseOrders) {
+        this.productPurchaseOrders = productPurchaseOrders;
     }
 }

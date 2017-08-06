@@ -5,7 +5,6 @@ import com.juanmadev.magicnuts.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,5 +29,16 @@ public class ProductService {
     public Product getProductById(Long id) {
 
         return productRepository.findOne(id);
+    }
+
+    public void deleteProduct(Long id) {
+
+        productRepository.delete(id);
+    }
+
+    public Product updateProduct(Long id, Product product) {
+
+        product.setId(id);
+        return productRepository.save(product);
     }
 }

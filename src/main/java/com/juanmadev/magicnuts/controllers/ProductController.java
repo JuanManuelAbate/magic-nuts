@@ -40,4 +40,18 @@ public class ProductController {
 
         return productMapper.productToProductResponse(productService.getProductById(id));
     }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable("id") Long id) {
+
+        productService.deleteProduct(id);
+    }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    public ProductResponse updateProductById(@PathVariable("id") Long id, @RequestBody ProductRequest product) {
+
+        Product updatedProduct = productService.updateProduct(id, productMapper.productRequestToProduct(product));
+        return productMapper.productToProductResponse(updatedProduct);
+    }
+
 }
