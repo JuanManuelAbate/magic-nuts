@@ -1,5 +1,6 @@
 package com.juanmadev.magicnuts.controllers.responses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,17 +10,19 @@ public class PurchaseOrderResponse {
 
     private Long id;
     private String clientName;
-    private String address;
+    private String deliveryAddress;
+    private String deliveryTime;
     private String phoneNumber;
-    private String timeRange;
     private Boolean withDrawInBranch;
     private String comment;
-    private List<ProductResponse> products;
-    private Double total;
-    private String state;
+    private List<ProductPurchaseOrderResponse> products;
+    private Double grandTotal;
+    private String status;
 
     public PurchaseOrderResponse() {
 
+        this.products = new ArrayList<ProductPurchaseOrderResponse>();
+        this.grandTotal = new Double(0);
     }
 
     public Long getId() {
@@ -38,12 +41,20 @@ public class PurchaseOrderResponse {
         this.clientName = clientName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
     }
 
     public String getPhoneNumber() {
@@ -52,14 +63,6 @@ public class PurchaseOrderResponse {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getTimeRange() {
-        return timeRange;
-    }
-
-    public void setTimeRange(String timeRange) {
-        this.timeRange = timeRange;
     }
 
     public Boolean getWithDrawInBranch() {
@@ -78,28 +81,28 @@ public class PurchaseOrderResponse {
         this.comment = comment;
     }
 
-    public List<ProductResponse> getProducts() {
+    public List<ProductPurchaseOrderResponse> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductResponse> products) {
+    public void setProducts(List<ProductPurchaseOrderResponse> products) {
         this.products = products;
     }
 
-    public Double getTotal() {
-        return total;
+    public Double getGrandTotal() {
+        return grandTotal;
     }
 
-    public void setTotal(Double total) {
-        this.total = total;
+    public void setGrandTotal(Double grandTotal) {
+        this.grandTotal = grandTotal;
     }
 
-    public String getState() {
-        return state;
+    public String getStatus() {
+        return status;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
 

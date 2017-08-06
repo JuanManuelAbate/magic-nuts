@@ -1,44 +1,19 @@
-package com.juanmadev.magicnuts.entities;
+package com.juanmadev.magicnuts.controllers.requests;
 
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by juanmanuelabate on 1/7/17.
+ * Created by juanmanuelabate on 19/7/17.
  */
-@Entity
-public class PurchaseOrder {
+public class PurchaseOrderRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String clientName;
+    private List<ProductPurchaseOrderRequest> products;
     private String deliveryAddress;
     private String phoneNumber;
     private String deliveryTime;
     private Boolean withDrawInBranch;
     private String comment;
-    private String status;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder")
-    private List<ProductPurchaseOrder> productPurchaseOrders = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<ProductPurchaseOrder> getProductPurchaseOrders() {
-        return productPurchaseOrders;
-    }
-
-    public void setProductPurchaseOrders(List<ProductPurchaseOrder> productPurchaseOrders) {
-        this.productPurchaseOrders = productPurchaseOrders;
-    }
 
     public String getClientName() {
         return clientName;
@@ -46,6 +21,14 @@ public class PurchaseOrder {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
+    }
+
+    public List<ProductPurchaseOrderRequest> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductPurchaseOrderRequest> products) {
+        this.products = products;
     }
 
     public String getDeliveryAddress() {
@@ -78,14 +61,6 @@ public class PurchaseOrder {
 
     public void setWithDrawInBranch(Boolean withDrawInBranch) {
         this.withDrawInBranch = withDrawInBranch;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getComment() {

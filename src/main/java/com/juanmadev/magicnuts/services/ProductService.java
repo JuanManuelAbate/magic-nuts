@@ -30,4 +30,15 @@ public class ProductService {
 
         return productRepository.findOne(id);
     }
+
+    public void deleteProduct(Long id) {
+
+        productRepository.delete(id);
+    }
+
+    public Product updateProduct(Long id, Product product) {
+
+        product.setId(id);
+        return productRepository.save(product);
+    }
 }
